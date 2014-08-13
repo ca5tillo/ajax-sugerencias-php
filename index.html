@@ -1,0 +1,35 @@
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>html</title>
+      <script type="text/javascript">
+         function sugerencias(str){
+            var xmlhttp;
+            if(str.length==0){
+               document.getElementById("txtHint").innerHTML="";
+               return;
+            }
+            if(window.XMLHttpRequest){
+               xmlhttp=new XMLHttpRequest();
+            }else{
+               xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function(){
+               if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                  document.getElementById("txtHint").innerHTML=xmlhttp.responseText;               
+               }
+            }
+         xmlhttp.open("GET","sugerencias.php?q="+str,true);
+			xmlhttp.send();
+         }
+      </script>
+   </head>
+   <body>
+      <h2>sugerencias</h2>
+      <p>introduce un nombre en la siguiente casilla</p>
+      <form action="">
+         Primer nombre : <input type="text" id="txt1" onkeyup="sugerencias(this.value)">
+      </form>
+      <p>Sugerencias: <span id ="txtHint"></span></p>
+   </body>
+</html>
