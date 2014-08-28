@@ -32,6 +32,22 @@ if (strlen($q) > 0){
    $hint="";
    for ($i = 0; $i < count($nombre); $i++)
    {
+///*
+// Se añade expresion regular para que coincida el texto que se recibe 
+//sin importar el lugas en el que se encuentre dentro la lista 
+      if(preg_match("[.*".strtolower($q).".*]",strtolower($nombre[$i]))){
+      
+      if($hint==""){
+            $hint=$nombre[$i];
+         }else{
+            $hint=$hint." , ".$nombre[$i];
+         }
+      }
+//*/
+
+//
+/*
+//coincide sono cuando se escribe el principio de la palabra 
       if(strtolower($q)==strtolower(substr($nombre[$i],0,strlen($q)))){
          if($hint==""){
             $hint=$nombre[$i];
@@ -39,7 +55,7 @@ if (strlen($q) > 0){
             $hint=$hint." , ".$nombre[$i];
          }
       }
-      
+//*/
    }
 }else{
    $hint = "";
